@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="cont-form-usuario">
+        <h1>INSERTAR USUARIOS</h1>
+        <form [formGroup]="formInsertarUsuarios" (submit)="insertarUsuario()" autocomplete="off">
+          <div class="form-group">
+            <label for="">Nombre Completo*</label>
+            <input type="text" formControlName="nombre" id="" class="form-control">
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">E-mail</label>
+                <input type="email" formControlName="email" id="" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Teléfono</label>
+                <input type="number" formControlName="telefono" id="" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Dirección</label>
+                <input type="text" formControlName="direccion" id="" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Género</label>
+                <select formControlName="genero" id="genero" class="form-control">
+                  <option value="" selected disabled>Género</option>
+                  <option value="masculino">Masculino</option>
+                  <option value="femenino">Femenino</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Comentario</label>
+            <textarea formControlName="comentario" id="" cols="30" rows="3" class="form-control"></textarea>
+          </div>
+          <div class="form-group text-center ">
+            <button type="submit" [disabled]="formInsertarUsuarios.invalid" class="btn btn-warning">Insertar usuario</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

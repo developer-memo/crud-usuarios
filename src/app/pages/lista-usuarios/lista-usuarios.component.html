@@ -1,0 +1,101 @@
+<div class="container cont-lista-usuarios ">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h1>Lista de usuarios</h1>
+
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor=" let user of usuarios ">
+            <th scope="row">{{user.id}}</th>
+            <td>{{user.nombre}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.telefono}}</td>
+            <td>{{user.fecha_reg | date: 'dd/MM/yyyy' }}</td>
+            <td>
+              <button type="button" class="btn btn-info"  data-bs-toggle="modal" data-bs-target="#modalEditar" (click)="openModal(user)">Editar</button>
+              &nbsp; 
+              <button type="button" class="btn btn-danger" (click)="eliminarUsuario(user.id)" >Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal editar usuario -->
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalEditarLabel">Editar usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formEditarUsuario" (submit)="editarUsuario()" autocomplete="off">
+          <div class="form-group">
+            <label for="">Nombre Completo*</label>
+            <input type="text" formControlName="nombre" id="" class="form-control">
+            <input type="number" formControlName="id" hidden>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">E-mail</label>
+                <input type="email" formControlName="email" id="" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Teléfono</label>
+                <input type="number" formControlName="telefono" id="" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Dirección</label>
+                <input type="text" formControlName="direccion" id="" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Género</label>
+                <select formControlName="genero" id="genero" class="form-control">
+                  <option value="" selected disabled>Género</option>
+                  <option value="masculino">Masculino</option>
+                  <option value="femenino">Femenino</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Comentario</label>
+            <textarea formControlName="comentario" id="" cols="30" rows="3" class="form-control"></textarea>
+          </div>
+          <div class="form-group text-center ">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            &nbsp;
+            <button type="submit" [disabled]="formEditarUsuario.invalid" class="btn btn-warning">Actualizar usuario</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
